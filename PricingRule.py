@@ -121,5 +121,5 @@ class FreeGift(PricingRule):
             if mainItemCount >= freeItemCount:
                 total -= self._freeItem.price * freeItemCount
             else:
-                total -= self._freeItem.price * mainItemCount
+                total -= self._freeItem.price * (int(mainItemCount / self._numberOfFreeItems) + (mainItemCount % self._numberOfFreeItems))
         return total
