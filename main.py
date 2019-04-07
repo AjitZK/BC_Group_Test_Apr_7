@@ -13,12 +13,13 @@ vga1 = VGAAdapter()
 atv1 = AppleTV()
 atv2 = AppleTV()
 atv3 = AppleTV()
+atv4 = AppleTV()
 
-atvDiscount = XForY(3,2,AppleTV())
-ipdDiscount = BulkDiscount(4, 499.99, IPad())
-mbpDiscount = FreeGift(VGAAdapter(), MacBookPro())
+pricingRules = []
 
-pricingRules = [atvDiscount, ipdDiscount, mbpDiscount]
+pricingRules.append(XForY(3,1,AppleTV()))
+pricingRules.append(BulkDiscount(4, 499.99, IPad()))
+pricingRules.append(FreeGift(1, VGAAdapter(), MacBookPro()))
 
 co = Checkout(pricingRules)
 co.scan(atv1)
@@ -30,9 +31,10 @@ co.scan(ipd2)
 co.scan(ipd3)
 co.scan(ipd4)
 co.scan(ipd5)
-co.scan(ipd6)
+# co.scan(ipd6)
 # co.scan(mbp1)
-# co.scan(atv3)
+co.scan(atv3)
+co.scan(atv4)
 # co.scan(vga1)
 
 totalPrice = co.totalPrice()
