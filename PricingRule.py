@@ -89,21 +89,14 @@ class BulkDiscount(PricingRule):
 
 class FreeGift(PricingRule):
     """
-    Enforces a deal where n items are given for free if a particular item is purchased\n
-    Takes in the number of free items that will be given, the item that needs to be free and the item to be discounted
+    Enforces a deal where a item is given for free if a particular item is purchased\n
+    Takes in the item that needs to be free and the item to be discounted
     """
-    def __init__(self, numberOfFreeItems, freeItem, discountItem):
+    def __init__(self, freeItem, discountItem):
         super().__init__(discountItem)
-        if not isinstance(numberOfFreeItems, int):
-            print('Cannot accept a value for numberOfFreeItems that is not an integer, so numberOfFreeItems is automatically set to 1')
-            numberOfFreeItems = 1
-        if numberOfFreeItems < 1:
-            print('Cannot accept a value for numberOfFreeItems that is less than 1, so numberOfFreeItems is automatically set to 1')
-            numberOfFreeItems = 1
         if not isinstance(freeItem, Item):
             print('Cannot accept a value for freeItem that is not of class Item, so freeItem is automatically set to Item(\'\',\'\',0.00)')
             freeItem = Item()
-        self._numberOfFreeItems = numberOfFreeItems
         self._freeItem = freeItem
     
     def applyDiscount(self, listOfItems=None):
@@ -121,5 +114,5 @@ class FreeGift(PricingRule):
             if mainItemCount >= freeItemCount:
                 total -= self._freeItem.price * freeItemCount
             else:
-                total -= self._freeItem.price * (int(mainItemCount / self._numberOfFreeItems) + (mainItemCount % self._numberOfFreeItems))
+                total -= self._freeItem.price * mainItemCount
         return total
