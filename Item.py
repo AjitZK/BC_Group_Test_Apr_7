@@ -15,7 +15,7 @@ class Item:
             price = 0.00
         if price < 0.00:
             print('Cannot accept a value for price that is less than $0.00, so newPrice is automatically set to $0.00')
-            newPrice = discountItem.price
+            price = 0.00
         self._sku = sku
         self._name = name
         self._price = price
