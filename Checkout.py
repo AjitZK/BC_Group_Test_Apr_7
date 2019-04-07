@@ -27,25 +27,25 @@ class Checkout:
         self._total = 0
         for rule in self._pricingRules:
             if isinstance(rule, XForY):
-                count = 1
+                count = 0
                 for item in self._listOfItems:
-                    if item.sku == rule.sku:
+                    if item.sku == rule.discountItem.sku:
                         count += 1
                         if count % 3 == 0:
                             self._total -= item.price
             elif isinstance(rule, BulkDiscount):
                 count = 0
                 for item in self._listOfItems:
-                    if item.sku == rule.sku:
+                    if item.sku == rule.discountItem.sku:
                         count += 1
-                if count >= rule.threshold:
+                if count > rule.threshold:
                     self._total += rule.newPrice * count
-                    self.total -= item.price * count
+                    self._total -= rule.discountItem.price * count
             elif isinstance(rule, FreeGift):
                 freeItemCount = 0
                 mainItemCount = 0
                 for item in self._listOfItems:
-                    if item.sku == rule.sku:
+                    if item.sku == rule.discountItem.sku:
                         mainItemCount += 1
                     if item.sku == rule.freeItem.sku:
                         freeItemCount += 1

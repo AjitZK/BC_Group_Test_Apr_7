@@ -1,20 +1,20 @@
 class PricingRule:
-    def __init__(self, sku):
-        self._sku = sku
+    def __init__(self, discountItem):
+        self._discountItem = discountItem
         
     @property
-    def sku(self):
-        return self._sku
+    def discountItem(self):
+        return self._discountItem
 
 class XForY(PricingRule):
-    def __init__(self, x, y, sku):
-        super().__init__(sku)
+    def __init__(self, x, y, discountItem):
+        super().__init__(discountItem)
         self._x = x
         self._y = y
 
 class BulkDiscount(PricingRule):
-    def __init__(self, threshold, newPrice, sku):
-        super().__init__(sku)
+    def __init__(self, threshold, newPrice, discountItem):
+        super().__init__(discountItem)
         self._threshold = threshold
         self._newPrice = newPrice
     
@@ -27,8 +27,8 @@ class BulkDiscount(PricingRule):
         return self._newPrice
 
 class FreeGift(PricingRule):
-    def __init__(self, freeItem, sku):
-        super().__init__(sku)
+    def __init__(self, freeItem, discountItem):
+        super().__init__(discountItem)
         self._freeItem = freeItem
     
     @property
