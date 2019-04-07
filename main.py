@@ -17,7 +17,7 @@ atv4 = AppleTV()
 
 pricingRules = []
 
-pricingRules.append(XForY(3,1,AppleTV()))
+pricingRules.append(XForY(3,2,AppleTV()))
 pricingRules.append(BulkDiscount(4, 499.99, IPad()))
 pricingRules.append(FreeGift(1, VGAAdapter(), MacBookPro()))
 
@@ -31,11 +31,8 @@ co.scan(ipd2)
 co.scan(ipd3)
 co.scan(ipd4)
 co.scan(ipd5)
-# co.scan(ipd6)
-# co.scan(mbp1)
 co.scan(atv3)
 co.scan(atv4)
-# co.scan(vga1)
 
 totalPrice = co.totalPrice()
 
